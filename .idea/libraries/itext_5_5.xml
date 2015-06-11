@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="itext-5.5">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/Library/itext-5.5.5" />
+      <root url="file://$PROJECT_DIR$/Library/poi-3.12-beta1" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/Library/poi-3.12-beta1/docs/apidocs" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/Library/itext-5.5.5" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/Library/itext-5.5.5" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/Library/poi-3.12-beta1" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/Library/itext-5.5.5" recursive="false" type="SOURCES" />
+  </library>
+</component>
