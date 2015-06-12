@@ -1,10 +1,33 @@
-The
-SafeHome
-security function enables the homeowner to configure the security system when it is installed, monitors all sensors connected to the security system, and interacts with the homeowner through the Internet, a PC, or a control panel.
-During installation, the
-SafeHome
-PC is used to program and configure the system. Each sensor is assigned a number and type, a master password is programmed for arming and disarming the system, and the telephone numbers(s) are input for dialing when a sensor event occurs.
-When a sensor event is recognized, the software invokes and audible alarm attached to the system. After a delay time that is specified by the homeowner during system configuration activities, the software dials a telephone number
-of  a
-monitoring service, provides information about  the location, reporting the nature of the event that has been detected. The telephone number will be redialed every 20 seconds until telephone connection is obtained.
+classDesign_Example.docx
+
+The SafeHome security function enables the homeowner to configure the security system when it is installed, monitors all sensors connected to the security system, and interacts with the homeowner through the Internet, a PC, or a control panel.
+During installation, the SafeHome PC is used to program and configure the system. Each sensor is assigned a number and type, a master password is programmed for arming and disarming the system, and the telephone numbers(s) are input for dialing when a sensor event occurs.
+When a sensor event is recognized, the software invokes and audible alarm attached to the system. After a delay time that is specified by the homeowner during system configuration activities, the software dials a telephone number of  a monitoring service, provides information about  the location, reporting the nature of the event that has been detected. The telephone number will be redialed every 20 seconds until telephone connection is obtained.
 The homeowner receives security information via a control panel, the PC, or a browser, collectively called an interface. The interface displays prompting messages and system status information on the control panel, the PC, or the browser window. Homeowner interaction takes the following form…….
+আমার নামে তাওসিফ
+প্রতিভাবান সাবির
+উপবন
+প্রতিভা
+প্ররাস্কুগদাকগদক
+পরিণত
+প্রতিদিন
+আপনিত
+অপিতাক
+অবসুয়াস
+অভিনয়
+অতিগজদসগদ
+অধিস্যদ্গু
+অনুদ্যচস
+সুগেজ্যগদসজ
+সমদুহচুজ
+দুকদুহকশ
+নিউসাগজ
+নির‍্যেয়াগদুয়া
+উপউধশ
+বিয়াসজদ্গসজ
+অনাবিল
+অজউসধ
+অঘাশদুধ
+রামস্যগাআ
+কদাকার
+উনগসস

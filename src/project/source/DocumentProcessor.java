@@ -45,9 +45,9 @@ import java.util.zip.ZipInputStream;
 public class DocumentProcessor {
 
     private static final String INPUT_DOCUMENT = "/home/tawsif/Documents/Source";
-    private static final String OUTPUT_FOLDER = "Parsed Text/";
+    protected static final String OUTPUT_FOLDER = "Parsed Text/";
     private static final String ZIP_OUTPUT_FOLDER = "Unzipped File/";
-    private static final String PARSED_FILE_LIST = "Parsed List/list.txt";
+    protected static final String PARSED_FILE_LIST = "Parsed List/list.txt";
     private static final String SOURCE_FILE_LIST = "Parsed List/source list.txt";
 
     private List<String> SourceName = new ArrayList<>();
@@ -180,6 +180,8 @@ public class DocumentProcessor {
         PrintStream out = new PrintStream(new FileOutputStream(fileName));
         System.setOut(out);
 
+        System.out.println(fileName.replace(".txt" , ".docx").replace(OUTPUT_FOLDER , "") + "\n");
+
         textList.forEach(System.out::println);
 
         out.close();
@@ -221,11 +223,11 @@ public class DocumentProcessor {
                 } else if (string.contains(".doc")) {
 
                     String doc = readDoc(INPUT_DOCUMENT + File.separator + string);
-                    makeFile(doc, string);
+                    makeFile(string + "\n "+ doc, string);
 
                 } else if (string.contains(".pdf")) {
                     String pdf = readPdf(INPUT_DOCUMENT + File.separator + string);
-                    makeFile(pdf, string);
+                    makeFile(string + "\n "+ pdf, string);
                 }
             } else
                 System.out.println(string + " : Already Parsed ");
