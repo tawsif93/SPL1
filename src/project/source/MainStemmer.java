@@ -3,7 +3,7 @@ package project.source;
 import java.io.*;
 
 public class MainStemmer {
-    public String FileName, ExistingFileName;
+    public String ExistingFileName;
     File Folder;
     // public int  LineNumber;
 
@@ -35,13 +35,11 @@ public class MainStemmer {
 
                 BufferedReader reader = new BufferedReader(new FileReader(file));
 
-//                            BufferedWriter write = new BufferedWriter(new FileWriter(new File("stemmedFiles\\" + ExistingFileName )));
-
                 // LineNumber = 0;
                 try {
                     while((temp = reader.readLine()) != null){
 
-                        if(flag == false){
+                        if(!flag){
                             sb.append(temp).append("\n");
                             flag = true;
                         }
@@ -52,23 +50,6 @@ public class MainStemmer {
                                 sb.append(st.getWord()).append("\n");
                             }
                         }
-/*
-                                //	LineNumber++;
-                                        if(flag == true){
-                                            String [] s = temp.split(" ");
-                                            for(String newTemp : s){
-                                                    st.setWord(newTemp);
-                                                    String root = st.getWord();
-                                                write.write(root +*/
-/* " " + LineNumber +*//*
- "\n");
-                                            }
-                                        }
-                                        
-                                        else {
-                                            write.write(temp + "\n");
-                                        }
-*/
                     }
 
                     makeFile(sb.toString() , "stemmedFiles" + File.separator + ExistingFileName );
@@ -77,8 +58,7 @@ public class MainStemmer {
                 }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-            } catch (IOException e1) {
-                e1.printStackTrace();		}
+            }
         }
 
 

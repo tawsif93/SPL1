@@ -15,10 +15,8 @@ public class Stemmer {
     public boolean checkConsonant(int index){
         switch(Word.charAt(index)){
             case 'a' : case 'e' : case 'i': case 'o' : case 'u': return false;
-            case 'y' :   
-            {
-            	if(index == 0) return true;
-                else return !checkConsonant(index - 1);
+            case 'y' : {
+                return index == 0 || !checkConsonant(index - 1);
             }
             default: return true;
         }
@@ -51,7 +49,7 @@ public class Stemmer {
     
     public boolean vowelExist(){
         for (int counter = 0; counter < Word.length(); counter++) {
-            if(checkConsonant(counter) == false)
+            if(!checkConsonant(counter))
                 return true;
         }
         return false;
@@ -67,12 +65,9 @@ public class Stemmer {
         if(num < 2 || !checkConsonant(num) || checkConsonant(num-1) || !checkConsonant(num-2))
             return false;
         char ch = Word.charAt(num);
-        if(ch == 'w' || ch == 'x' || ch == 'y'){
-            return false;
-        }
-        
-        
-        return true;
+        return !(ch == 'w' || ch == 'x' || ch == 'y');
+
+
     }
 
 
@@ -135,7 +130,7 @@ public class Stemmer {
     public void step2(){
         if(Word.length() == 0)
             return;
-        if(Word.charAt(Word.length()-1) == 'y' && vowelExist() == true){
+        if(Word.charAt(Word.length()-1) == 'y' && vowelExist()){
             Word = Word.substring(0, Word.length()-1) + 'i';
         }
     }
