@@ -676,7 +676,7 @@ public class Stemmer {
     }
 
     public void setWord(String Word) {
-        this.Word = Word;
+        this.Word = Word.toLowerCase();
         stem();
     }
 }

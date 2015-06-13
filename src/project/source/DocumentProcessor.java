@@ -5,6 +5,7 @@ import com.itextpdf.text.pdf.parser.PdfReaderContentParser;
 import com.itextpdf.text.pdf.parser.SimpleTextExtractionStrategy;
 import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 
+import javafx.concurrent.Task;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
@@ -24,6 +25,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -42,24 +45,42 @@ import java.util.zip.ZipInputStream;
  * By formatting the basic xml file , parsed the text document
  *
  */
-public class DocumentProcessor {
+public class DocumentProcessor extends Task{
 
-    private static final String INPUT_DOCUMENT = "/home/tawsif/Documents/Source";
+
+
     protected static final String OUTPUT_FOLDER = "Parsed Text/";
-    private static final String ZIP_OUTPUT_FOLDER = "Unzipped File/";
     protected static final String PARSED_FILE_LIST = "Parsed List/list.txt";
+    private static final String ZIP_OUTPUT_FOLDER = "Unzipped File/";
     private static final String SOURCE_FILE_LIST = "Parsed List/source list.txt";
-
+    public int count ;
+    private  String INPUT_DOCUMENT ;
     private List<String> SourceName = new ArrayList<>();
 
-    public int count ;
-
     private DocumentProcessor() {
-        count = 0 ;
+        count = 1 ;
     }
 
     public static DocumentProcessor createProjectStart() {
         return new DocumentProcessor();
+    }
+
+    /**
+     * Invoked when the Task is executed, the call method must be overridden and
+     * implemented by subclasses. The call method actually performs the
+     * background thread logic. Only the updateProgress, updateMessage, updateValue and
+     * updateTitle methods of Task may be called from code within this method.
+     * Any other interaction with the Task from the background thread will result
+     * in runtime exceptions.
+     *
+     * @return The result of the background work, if any.
+     * @throws Exception an unhandled exception which occurred during the
+     *                   background operation
+     */
+    @Override
+    protected Object call() throws Exception {
+        doWork();
+        return null;
     }
 
     /**
@@ -138,7 +159,6 @@ public class DocumentProcessor {
         return path;
     }
 
-
     public String xmlFormat(String xml) {
         try {
             InputSource src = new InputSource(new StringReader(xml));
@@ -180,7 +200,7 @@ public class DocumentProcessor {
         PrintStream out = new PrintStream(new FileOutputStream(fileName));
         System.setOut(out);
 
-        System.out.println(fileName.replace(".txt" , ".docx").replace(OUTPUT_FOLDER , "") + "\n");
+        System.out.println(fileName.replace(".txt", ".docx").replace(OUTPUT_FOLDER, "") + "\n");
 
         textList.forEach(System.out::println);
 
@@ -189,7 +209,6 @@ public class DocumentProcessor {
         System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
 
     }
-
 
     public void parseDocx(String filename) throws IOException {
         unzip(filename);
@@ -207,7 +226,7 @@ public class DocumentProcessor {
         loadParsed();
 
         for (String string : path) {
-            if (checkParsed(string)) {
+            if (checkParsed(string) && isValid(string)) {
 
                 String withoutExtension = removeExtension(string);
 
@@ -229,9 +248,19 @@ public class DocumentProcessor {
                     String pdf = readPdf(INPUT_DOCUMENT + File.separator + string);
                     makeFile(string + "\n "+ pdf, string);
                 }
-            } else
-                System.out.println(string + " : Already Parsed ");
+                if (isValid(string)) new MainStemmer(new File(OUTPUT_FOLDER + removeExtension(string) + ".txt"));
 
+            } else
+            {
+                System.out.println(string + " : Already Parsed ");
+                try {
+                    Thread.sleep( TimeUnit.SECONDS.toSeconds(60));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            updateProgress(count , path.length);
             count++;
         }
 
@@ -371,6 +400,26 @@ public class DocumentProcessor {
             file.delete();
             System.out.println("File is deleted : " + file.getAbsolutePath());
         }
+    }
+
+    public String getInputDocument() {
+        return INPUT_DOCUMENT;
+    }
+
+    public  void setInputDocument(String inputDocument) {
+        INPUT_DOCUMENT = inputDocument;
+    }
+
+    public boolean isValid(String fileName)
+    {
+        if (fileName.contains(".docx")) {
+            return true;
+        } else if (fileName.contains(".doc")) {
+            return true;
+        } else if (fileName.contains(".pdf")) {
+            return true;
+        }
+        return false;
     }
 }
 
