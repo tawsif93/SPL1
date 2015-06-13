@@ -7,10 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import project.source.DocumentProcessor;
-import project.source.DocumentProcessorService;
-import project.source.Stemmer;
+import project.source.document.DocumentProcessorService;
+import project.source.stemmer.Stemmer;
 import project.source.search.Result;
 import project.source.search.Searcher;
 
@@ -77,6 +75,7 @@ public class MainViewController implements Initializable
         stem = new Stemmer();
         columnKeyWord.setCellValueFactory(cellData -> cellData.getValue().fileName);
         columnFrequency.setCellValueFactory(cellData -> cellData.getValue().frequency.asObject());
+
 
 //        columnKeyWord.setCellValueFactory(new PropertyValueFactory<Result , String>("fileName"));
 //        columnFrequency.setCellValueFactory(new PropertyValueFactory<Result , Integer>("frequency"));

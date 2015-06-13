@@ -1,4 +1,4 @@
-package project.source;
+package project.source.document;
 
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfReaderContentParser;
@@ -16,6 +16,7 @@ import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSSerializer;
 import org.xml.sax.InputSource;
 import project.source.search.FileOrganizer;
+import project.source.stemmer.MainStemmer;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 

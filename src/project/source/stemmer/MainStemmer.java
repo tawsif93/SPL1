@@ -1,9 +1,9 @@
-package project.source;
+package project.source.stemmer;
 
 import java.io.*;
 
 public class MainStemmer {
-    protected static String SAVE_DIRECTORY = "stemmedFiles" + File.separator ;
+    public static String SAVE_DIRECTORY = "stemmedFiles" + File.separator ;
     public String ExistingFileName;
     File file;
 

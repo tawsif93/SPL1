@@ -1,4 +1,4 @@
-package project.source;
+package project.source.document;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;

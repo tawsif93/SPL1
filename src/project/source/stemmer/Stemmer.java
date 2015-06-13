@@ -1,4 +1,4 @@
-package project.source;
+package project.source.stemmer;
 
 
 public class Stemmer {

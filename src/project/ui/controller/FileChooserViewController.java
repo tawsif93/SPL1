@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class FileChooserViewController implements Initializable{
+public class FileChooserViewController extends MainViewController implements Initializable{
     DirectoryChooser directoryChooser = new DirectoryChooser();
     /**
      * Called to initialize a controller after its root element has been
