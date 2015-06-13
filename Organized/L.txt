@@ -1,0 +1,36 @@
+line,3.docx,21,Paint lyrics.doc,1
+lai,3.docx,14,21.docx,12,Cigarettes lyrics.doc,5,2.docx,2,Bill 15..docx,2
+l.,3.docx,4,Bill 15..docx,2
+less,3.docx,7,2.docx,1
+lyric,Safe With You lyrics.doc,5,Cigarettes lyrics.doc,6,Say Goodbye lyrics.doc,4,Open Wounds lyrics.doc,2,You.doc,1,The Fire Breathes lyrics.doc,1,Forgiven lyrics.doc,1,You Take My Rights Away lyrics.doc,1,Slip Out The Back lyrics.doc,1,Paint lyrics.doc,1
+learn,Safe With You lyrics.doc,5
+lock,Safe With You lyrics.doc,9
+leav,Safe With You lyrics.doc,5,Say Goodbye lyrics.doc,2,Open Wounds lyrics.doc,2,Forgiven lyrics.doc,1
+love,Safe With You lyrics.doc,8,Cigarettes lyrics.doc,11,Open Wounds lyrics.doc,2,Forgiven lyrics.doc,2,Paint lyrics.doc,3
+lift,Safe With You lyrics.doc,4
+littl,Cigarettes lyrics.doc,17
+life,Cigarettes lyrics.doc,6,Say Goodbye lyrics.doc,4,You.doc,2,The Fire Breathes lyrics.doc,1,You Take My Rights Away lyrics.doc,1,Slip Out The Back lyrics.doc,3,Paint lyrics.doc,1
+like,Cigarettes lyrics.doc,62,Say Goodbye lyrics.doc,2,You.doc,1,Slip Out The Back lyrics.doc,6
+light,Cigarettes lyrics.doc,15,Paint lyrics.doc,1
+let,Cigarettes lyrics.doc,5,You Take My Rights Away lyrics.doc,1
+li,Cigarettes lyrics.doc,5,Forgiven lyrics.doc,1
+listen,Cigarettes lyrics.doc,20,Slip Out The Back lyrics.doc,1
+lip,Cigarettes lyrics.doc,10
+laugh,Say Goodbye lyrics.doc,6
+left,Say Goodbye lyrics.doc,9,Slip Out The Back lyrics.doc,1
+last,Say Goodbye lyrics.doc,1,ODD.pdf,2,Slip Out The Back lyrics.doc,1
+license.,ODD.pdf,18
+lecture,ODD.pdf,2
+later,,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1
+load,ODD.pdf,2
+look,ODD.pdf,3,Slip Out The Back lyrics.doc,2
+level,ODD.pdf,1
+liais,ODD.pdf,1
+live,ODD.pdf,1,The Fire Breathes lyrics.doc,3,Paint lyrics.doc,1
+licenceplate#univers,ODD.pdf,1
+lent,ODD.pdf,1
+location,,classDesign_Example.docx,1
+lose,You Take My Rights Away lyrics.doc,1
+lower,Bill 15..docx,2
+l,3.docx,3
+licens,ODD.pdf,8
