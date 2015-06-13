@@ -47,6 +47,8 @@ public class MainViewController implements Initializable
     public void onClick(ActionEvent event)
     {
         System.out.println(service.getSource());
+        System.out.println(service.getState());
+        if(service.getState()== Worker.State.FAILED) service.restart();
         Searcher searcher = new Searcher();
         try {
             System.out.println(enterTextField.getText() + " text ");
