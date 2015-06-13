@@ -685,12 +685,22 @@ public class Stemmer {
         for(int i = 0; i < word.length(); i++){
             switch (word.charAt(i)){
                 case ',' : break;
+                case '\"' : break;
+                case '\'' : break;
+                case '”' : break;
+                case '' : break;
+                case '…' : break;
+                case '’' : break;
+                case '‘' : break;
+                case '>' : break;
+                case '<' : break;
                 case '.' : break;
                 case '?' : break;
                 case ':' : break;
                 case ';' : break;
                 case '/' : break;
                 case '\\' : break;
+                case '“' : break;
                 case '!' : break;
                 case '@' : break;
                 case '#' : break;

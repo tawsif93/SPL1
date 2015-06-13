@@ -47,7 +47,7 @@ necessari
 repair
 materi
 sff
-4”
+4
 dia
 gi
 pipe
@@ -65,7 +65,7 @@ direct
 of
 ei
 sff
-4”
+4
 dia
 gi
 pipe
@@ -73,7 +73,7 @@ includ
 fit
 etc
 sff
-4”
+4
 socket
 gi
 with
@@ -90,7 +90,7 @@ main
 line
 keygrade
 valb
-4”
+4
 dia
 with
 fit

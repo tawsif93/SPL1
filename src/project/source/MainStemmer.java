@@ -9,14 +9,16 @@ public class MainStemmer {
 
     // public int  LineNumber;
 
-   /* public static void main(String[] args) {
+/* public static void main(String[] args) {
         String word = "প্রতিভা";
         System.out.println(word.substring(3, word.length()) + " " + "আড়".length());
-        Stemmer st = new Stemmer("Existing");
+        Stemmer st = new Stemmer();
+        st.setWord("\",Existing:");
         System.out.println(st.getWord());
-        new MainStemmer(new File(DocumentProcessor.OUTPUT_FOLDER));
-    }
-*/
+//        new MainStemmer(new File(DocumentProcessor.OUTPUT_FOLDER));
+    }*/
+
+
     public MainStemmer(File file){
         this.file = file;
         getWordAndFileName();

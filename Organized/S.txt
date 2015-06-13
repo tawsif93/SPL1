@@ -1,116 +1,83 @@
-subject:,3.docx,4,21.docx,4,6.docx,3,2.docx,1,Bill 15..docx,1
-sl.,3.docx,4,21.docx,4,2.docx,1,Bill 15..docx,2
-s/f/f,3.docx,24,Bill 15..docx,4
-sun,3.docx,7
-sh,3.docx,7
-short,3.docx,7
-same,3.docx,7,Cigarettes lyrics.doc,10,Say Goodbye lyrics.doc,1
-scaffold,3.docx,14,2.docx,2,Bill 15..docx,2
-sft.,3.docx,8,21.docx,4,2.docx,1,Bill 15..docx,4
-supplier,RUPOMM TRADERS.docx,7
-safe,Safe With You lyrics.doc,34,Cigarettes lyrics.doc,1
-smile,Safe With You lyrics.doc,5
-stand,Safe With You lyrics.doc,9,Say Goodbye lyrics.doc,1
-salvate,Safe With You lyrics.doc,4
-see,Safe With You lyrics.doc,4,The Fire Breathes lyrics.doc,1,You Take My Rights Away lyrics.doc,1,Slip Out The Back lyrics.doc,4
-scream,Safe With You lyrics.doc,4
-shift,Safe With You lyrics.doc,4
-sand,Safe With You lyrics.doc,4,21.docx,12,Bill 15..docx,6
-season,Safe With You lyrics.doc,4
-section,,21.docx,1,21.docx,1,21.docx,1
-scar,21.docx,6,Slip Out The Back lyrics.doc,6
-synthet,21.docx,6,Bill 15..docx,2
-spice,Cigarettes lyrics.doc,6
-shit,Cigarettes lyrics.doc,6
-sound,Cigarettes lyrics.doc,16
-street,Cigarettes lyrics.doc,6
-spit,Cigarettes lyrics.doc,5
-sarcast,Cigarettes lyrics.doc,5
-so,Cigarettes lyrics.doc,5,ODD.pdf,2,You.doc,2,Forgiven lyrics.doc,1,Slip Out The Back lyrics.doc,3
-sell,Cigarettes lyrics.doc,10
-suck,Cigarettes lyrics.doc,10
-someth,Cigarettes lyrics.doc,29
-stori,Cigarettes lyrics.doc,10
-sai,Cigarettes lyrics.doc,5,Say Goodbye lyrics.doc,14,You Take My Rights Away lyrics.doc,2,Slip Out The Back lyrics.doc,3
-safe,,Cigarettes lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Cigarettes lyrics.doc,1
-suckin,Cigarettes lyrics.doc,5
-supposedli,Cigarettes lyrics.doc,5
-say',Cigarettes lyrics.doc,5
-service,Cigarettes lyrics.doc,10,ODD.pdf,4
-some,Cigarettes lyrics.doc,10,ODD.pdf,3
-second,Cigarettes lyrics.doc,10,classDesign_Example.docx,1
-seem,Say Goodbye lyrics.doc,4,The Fire Breathes lyrics.doc,1,Slip Out The Back lyrics.doc,1
-strang,Say Goodbye lyrics.doc,4
-somehow,Say Goodbye lyrics.doc,5
+subject,3.docx,1,21.docx,1,6.docx,1,2.docx,1,Bill 15..docx,1
+sl,3.docx,1,21.docx,1,2.docx,1,Bill 15..docx,2
+sff,3.docx,6,Bill 15..docx,4
+sun,3.docx,1
+sh,3.docx,1
+short,3.docx,1
+same,3.docx,1,Cigarettes lyrics.doc,2,Say Goodbye lyrics.doc,1
+scaffold,3.docx,2,2.docx,2,Bill 15..docx,2
+sft,3.docx,2,21.docx,1,2.docx,1,Bill 15..docx,4
+supplier,RUPOMM TRADERS.docx,1
+safe,Safe With You lyrics.doc,7,Cigarettes lyrics.doc,1
+smile,Safe With You lyrics.doc,1
+stand,Safe With You lyrics.doc,2,Say Goodbye lyrics.doc,1
+salvate,Safe With You lyrics.doc,1
+see,Safe With You lyrics.doc,1,The Fire Breathes lyrics.doc,1,You Take My Rights Away lyrics.doc,1,Slip Out The Back lyrics.doc,4
+scream,Safe With You lyrics.doc,1
+shift,Safe With You lyrics.doc,1
+sand,Safe With You lyrics.doc,1,21.docx,2,Bill 15..docx,6
+season,Safe With You lyrics.doc,1
+section,21.docx,1
+scar,21.docx,1,Slip Out The Back lyrics.doc,6
+synthet,21.docx,1,Bill 15..docx,2
+spice,Cigarettes lyrics.doc,1
+shit,Cigarettes lyrics.doc,1
+sound,Cigarettes lyrics.doc,3
+street,Cigarettes lyrics.doc,1
+spit,Cigarettes lyrics.doc,1
+sarcast,Cigarettes lyrics.doc,1
+so,Cigarettes lyrics.doc,1,You.doc,2,Forgiven lyrics.doc,1,Slip Out The Back lyrics.doc,3
+sell,Cigarettes lyrics.doc,2
+suck,Cigarettes lyrics.doc,2
+someth,Cigarettes lyrics.doc,6
+stori,Cigarettes lyrics.doc,2
+sai,Cigarettes lyrics.doc,2,Say Goodbye lyrics.doc,9,You Take My Rights Away lyrics.doc,2,Slip Out The Back lyrics.doc,3
+suckin,Cigarettes lyrics.doc,1
+supposedli,Cigarettes lyrics.doc,1
+service,Cigarettes lyrics.doc,2,ODD.pdf,2,classDesign_Example.docx,1
+some,Cigarettes lyrics.doc,2,ODD.pdf,1
+second,Cigarettes lyrics.doc,2,classDesign_Example.docx,1
+seem,Say Goodbye lyrics.doc,1,The Fire Breathes lyrics.doc,1,Slip Out The Back lyrics.doc,1
+strang,Say Goodbye lyrics.doc,1
+somehow,Say Goodbye lyrics.doc,2
 swore,Say Goodbye lyrics.doc,1
 stai,Say Goodbye lyrics.doc,1
-say,,Say Goodbye lyrics.doc,1
-somewhere,Open Wounds lyrics.doc,2
-somebodi,Open Wounds lyrics.doc,2
-spend,Open Wounds lyrics.doc,2
-stop,Open Wounds lyrics.doc,4,You Take My Rights Away lyrics.doc,1
-self-destruct,Open Wounds lyrics.doc,2
-sleep,Open Wounds lyrics.doc,2,Slip Out The Back lyrics.doc,1
-stat,Open Wounds lyrics.doc,2
-scienc,ODD.pdf,26
-steve,ODD.pdf,26
-should…,ODD.pdf,2
-situat,ODD.pdf,2
-software.,ODD.pdf,1
-specif,ODD.pdf,5
-satisfi,ODD.pdf,2
-system,ODD.pdf,18,classDesign_Example.docx,3
-stabl,ODD.pdf,2
-systemunivers,ODD.pdf,2
-signals,,ODD.pdf,1
-structure,ODD.pdf,5
-sensors,,ODD.pdf,1
-source:,ODD.pdf,1
-similar,ODD.pdf,3
-sourc,ODD.pdf,4
-stakeholders’,ODD.pdf,2
-sources:,ODD.pdf,1
-stakeholders;,ODD.pdf,1
-select,ODD.pdf,2
-scope,ODD.pdf,2
-services:,ODD.pdf,1
-shar,ODD.pdf,4
-should,ODD.pdf,3
-sure,ODD.pdf,3
-show,ODD.pdf,1
-staff,ODD.pdf,6,Bill 15..docx,1
-specifi,ODD.pdf,2,classDesign_Example.docx,1
-staffname,ODD.pdf,1
-staff#,ODD.pdf,1
-staffstartd,ODD.pdf,1
-staffmemb,ODD.pdf,1
-staffmember’,ODD.pdf,1
-sometime,ODD.pdf,1
-strong,ODD.pdf,1
-subclass,ODD.pdf,6
-superclass,ODD.pdf,5
-subdivid,ODD.pdf,1
-system,,ODD.pdf,1,classDesign_Example.docx,1,classDesign_Example.docx,1,classDesign_Example.docx,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1
-sake,ODD.pdf,1
-summari,ODD.pdf,1
+somewhere,Open Wounds lyrics.doc,1
+somebodi,Open Wounds lyrics.doc,1
+spend,Open Wounds lyrics.doc,1
+stop,Open Wounds lyrics.doc,2,You Take My Rights Away lyrics.doc,1
+selfdestruct,Open Wounds lyrics.doc,2
+sleep,Open Wounds lyrics.doc,1,Slip Out The Back lyrics.doc,1
+stat,Open Wounds lyrics.doc,1
+scienc,ODD.pdf,8
+steve,ODD.pdf,8
+should,ODD.pdf,2
+show,ODD.pdf,2
+situat,ODD.pdf,1
+software,ODD.pdf,1,classDesign_Example.docx,2
+specif,ODD.pdf,2
+satisfi,ODD.pdf,1
+system,ODD.pdf,9,classDesign_Example.docx,7
+stabl,ODD.pdf,1
+systemunivers,ODD.pdf,1
+signal,ODD.pdf,1
+structure,ODD.pdf,2
+sensor,ODD.pdf,1,classDesign_Example.docx,4
+sourc,ODD.pdf,3
+similar,ODD.pdf,1
+semant,ODD.pdf,1
 stakehold,ODD.pdf,2
-stor,ODD.pdf,1
-structur,ODD.pdf,1
-sketches,,ODD.pdf,1
+select,ODD.pdf,1
+scope,ODD.pdf,1
+shar,ODD.pdf,2
 shovel,You.doc,1
 start,You.doc,1
-stronger;,You.doc,1
-search,The Fire Breathes lyrics.doc,1
-search,,The Fire Breathes lyrics.doc,1
+strong,You.doc,1
+search,The Fire Breathes lyrics.doc,2
 strength,The Fire Breathes lyrics.doc,1
 safehome,classDesign_Example.docx,2
 secur,classDesign_Example.docx,4
-sensor,classDesign_Example.docx,4,ODD.pdf,1
-system,,classDesign_Example.docx,1,classDesign_Example.docx,1,classDesign_Example.docx,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1
-system.,classDesign_Example.docx,2
-system,,classDesign_Example.docx,1,classDesign_Example.docx,1,classDesign_Example.docx,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1,ODD.pdf,1
-software,classDesign_Example.docx,2,ODD.pdf,1
-service,,classDesign_Example.docx,1,Cigarettes lyrics.doc,1,Cigarettes lyrics.doc,1,Cigarettes lyrics.doc,1,Cigarettes lyrics.doc,1,Cigarettes lyrics.doc,1,Cigarettes lyrics.doc,1,ODD.pdf,1,ODD.pdf,1,Cigarettes lyrics.doc,1,Cigarettes lyrics.doc,1
+specifi,classDesign_Example.docx,1
 statu,classDesign_Example.docx,1
 secret,Forgiven lyrics.doc,2
 suffer,You Take My Rights Away lyrics.doc,1
@@ -128,25 +95,11 @@ separ,Slip Out The Back lyrics.doc,1
 singl,Slip Out The Back lyrics.doc,1
 share,Paint lyrics.doc,1
 shame,Paint lyrics.doc,1
-sunrise,,Paint lyrics.doc,1
+sunrise,Paint lyrics.doc,3
 shad,Paint lyrics.doc,1
 substanc,Paint lyrics.doc,1
-sunrise,,Paint lyrics.doc,1
 stream,Paint lyrics.doc,1
 sorrow,Paint lyrics.doc,2
-sunrise,,Paint lyrics.doc,1
+staff,Bill 15..docx,1
 syphone,Bill 15..docx,4
-set,,Bill 15..docx,1,Bill 15..docx,1,Bill 15..docx,1
-set,,Bill 15..docx,1,Bill 15..docx,1
-section,,21.docx,1,21.docx,1,21.docx,1
-safe,,Cigarettes lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Cigarettes lyrics.doc,1
-section,,21.docx,1,21.docx,1,21.docx,1
-safe,,Cigarettes lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Cigarettes lyrics.doc,1
-section,,21.docx,1,21.docx,1,21.docx,1
-safe,,Cigarettes lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Safe With You lyrics.doc,1,Cigarettes lyrics.doc,1
-subject,3.docx,3,21.docx,2,6.docx,2
-sl,3.docx,3,21.docx,2
-sff,3.docx,18
-sft,3.docx,6,21.docx,2
-selfdestruct,Open Wounds lyrics.doc,2
-signal,ODD.pdf,1
+set,Bill 15..docx,4

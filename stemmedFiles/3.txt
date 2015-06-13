@@ -68,7 +68,7 @@ ei
 sff
 pvc
 pipe
-¾”
+¾
 dia
 sff
 ocket
@@ -103,9 +103,9 @@ plast
 opene
 same
 place
-½”
+½
 to
-¾”
+¾
 thick
 cement
 plast

@@ -1,12 +1,16 @@
 package project.ui.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import project.source.DocumentProcessor;
 import project.source.DocumentProcessorService;
+import project.source.Stemmer;
 import project.source.search.Result;
 import project.source.search.Searcher;
 
@@ -19,25 +23,20 @@ public class MainViewController implements Initializable
 {
 
     DocumentProcessorService service = new DocumentProcessorService();
-
+    Searcher searcher ;
+    Stemmer stem ;
     @FXML
-    private TableView resultTable ;
-
+    private TableView<Result> resultTable ;
     @FXML
-    private TableColumn  columnKeyWord ;
-
+    private TableColumn<Result , String>  columnKeyWord ;
     @FXML
-    private TableColumn columnFrequency ;
-
+    private TableColumn<Result , Integer> columnFrequency ;
     @FXML
     private Button buttonSearch ;
-
     @FXML
-    private TextField enterTextField ; ;
-
+    private TextField enterTextField ;
     @FXML
     private ProgressBar progressBar = new ProgressBar();
-
 
     public void setSource(String source) {
         service.setSource(source);
@@ -46,13 +45,17 @@ public class MainViewController implements Initializable
     @FXML
     public void onClick(ActionEvent event)
     {
-        System.out.println(service.getSource());
-        System.out.println(service.getState());
-        if(service.getState()== Worker.State.FAILED) service.restart();
-        Searcher searcher = new Searcher();
         try {
-            System.out.println(enterTextField.getText() + " text ");
-          if(enterTextField.getText().length()!= 0)  searcher.searchResult(enterTextField.getText()).forEach(s -> System.out.println(s.fileName + " " + s.frequency));
+
+          if(enterTextField.getText().length()!= 0)  {
+
+              stem.setWord(enterTextField.getText());
+              String stemmed = stem.getWord();
+
+              searcher.searchResult(stemmed).forEach(s -> System.out.println(s.fileName + " " + s.frequency));
+              refreshList(searcher.searchResult(stemmed));
+          }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,8 +73,18 @@ public class MainViewController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        searcher = new Searcher();
+        stem = new Stemmer();
+        columnKeyWord.setCellValueFactory(cellData -> cellData.getValue().fileName);
+        columnFrequency.setCellValueFactory(cellData -> cellData.getValue().frequency.asObject());
+
+//        columnKeyWord.setCellValueFactory(new PropertyValueFactory<Result , String>("fileName"));
+//        columnFrequency.setCellValueFactory(new PropertyValueFactory<Result , Integer>("frequency"));
+
         simulateProgressBar();
+
     }
+
 
     public void simulateProgressBar()
     {
@@ -79,5 +92,16 @@ public class MainViewController implements Initializable
         if (service.getState() == Worker.State.READY) {
             service.start();
         }
+    }
+
+    public void refreshList(ArrayList list)
+    {
+        ObservableList data = FXCollections.observableArrayList(list);
+
+        System.out.println(data.size());
+
+        resultTable.setItems(data);
+        resultTable.requestFocus();
+
     }
 }
