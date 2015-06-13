@@ -1,13 +1,12 @@
 package project.source;
 
-import project.source.search.FileOrganizer;
-
 import java.io.*;
 
 public class MainStemmer {
     protected static String SAVE_DIRECTORY = "stemmedFiles" + File.separator ;
     public String ExistingFileName;
     File file;
+
     // public int  LineNumber;
 
    /* public static void main(String[] args) {
@@ -21,7 +20,6 @@ public class MainStemmer {
     public MainStemmer(File file){
         this.file = file;
         getWordAndFileName();
-        organize();
     }
 
     public void getWordAndFileName(){
@@ -85,12 +83,4 @@ public class MainStemmer {
 
     }
 
-    public void organize()
-    {
-        try {
-            new FileOrganizer().organize(SAVE_DIRECTORY + file.getName());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

@@ -675,8 +675,68 @@ public class Stemmer {
         return Word;
     }
 
-    public void setWord(String Word) {
-        this.Word = Word.toLowerCase();
+    public String getOnlyWord(String word){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < word.length(); i++){
+            switch (word.charAt(i)){
+                case ',' : break;
+                case '.' : break;
+                case '?' : break;
+                case ':' : break;
+                case ';' : break;
+                case '/' : break;
+                case '\\' : break;
+                case '!' : break;
+                case '@' : break;
+                case '#' : break;
+                case '%' : break;
+                case '^' : break;
+                case '&' : break;
+                case '*' : break;
+                case '(' : break;
+                case ')' : break;
+                case '{' : break;
+                case '}' : break;
+                case '[' : break;
+                case ']' : break;
+                case '-' : break;
+                default: sb.append(word.charAt(i));
+            }
+        }
+        return sb.toString();
+    }
+
+    public String getOnlyWord(String word){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < word.length(); i++){
+            switch (word.charAt(i)){
+                case ',' : break;
+                case '.' : break;
+                case '?' : break;
+                case ':' : break;
+                case ';' : break;
+                case '/' : break;
+                case '\\' : break;
+                case '!' : break;
+                case '@' : break;
+                case '#' : break;
+                case '%' : break;
+                case '^' : break;
+                case '&' : break;
+                case '*' : break;
+                case '(' : break;
+                case ')' : break;
+                case '{' : break;
+                case '}' : break;
+                case '[' : break;
+                case ']' : break;
+                case '-' : break;
+                default: sb.append(word.charAt(i));
+            }
+        }
+        return sb.toString();
+    }    public void setWord(String Word) {
+        this.Word = getOnlyWord(Word.toLowerCase());
         stem();
     }
 }

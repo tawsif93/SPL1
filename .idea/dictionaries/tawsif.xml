@@ -3,6 +3,7 @@
     <words>
       <w>fstream</w>
       <w>lpath</w>
+      <w>stemmer</w>
     </words>
   </dictionary>
 </component>

@@ -50,7 +50,7 @@ public class MainViewController implements Initializable
         Searcher searcher = new Searcher();
         try {
             System.out.println(enterTextField.getText() + " text ");
-            searcher.searchResult(enterTextField.getText()).forEach(s -> System.out.println(s.fileName + " " + s.frequency));
+          if(enterTextField.getText().length()!= 0)  searcher.searchResult(enterTextField.getText()).forEach(s -> System.out.println(s.fileName + " " + s.frequency));
         } catch (IOException e) {
             e.printStackTrace();
         }

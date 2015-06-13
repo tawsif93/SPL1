@@ -15,6 +15,7 @@ import org.w3c.dom.bootstrap.DOMImplementationRegistry;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSSerializer;
 import org.xml.sax.InputSource;
+import project.source.search.FileOrganizer;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -247,7 +248,9 @@ public class DocumentProcessor extends Task{
                     makeFile(string + "\n "+ pdf, string);
                 }
 
-                new MainStemmer(new File(OUTPUT_FOLDER + removeExtension(string) + ".txt"));
+                String fileName = removeExtension(string) + ".txt" ;
+                new MainStemmer(new File(OUTPUT_FOLDER + fileName));
+                new FileOrganizer().organize(MainStemmer.SAVE_DIRECTORY + fileName);
 
             } else
             {
