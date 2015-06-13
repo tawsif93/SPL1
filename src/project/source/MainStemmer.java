@@ -1,10 +1,13 @@
 package project.source;
 
+import project.source.search.FileOrganizer;
+
 import java.io.*;
 
 public class MainStemmer {
+    protected static String SAVE_DIRECTORY = "stemmedFiles" + File.separator ;
     public String ExistingFileName;
-    File Folder;
+    File file;
     // public int  LineNumber;
 
    /* public static void main(String[] args) {
@@ -15,15 +18,16 @@ public class MainStemmer {
         new MainStemmer(new File(DocumentProcessor.OUTPUT_FOLDER));
     }
 */
-    public MainStemmer(File folder){
-        Folder = folder;
+    public MainStemmer(File file){
+        this.file = file;
         getWordAndFileName();
+        organize();
     }
 
     public void getWordAndFileName(){
         Stemmer st = new Stemmer();
 
-        File file = Folder ;
+        File file = this.file;
 
         ExistingFileName = file.getName();
 
@@ -56,7 +60,7 @@ public class MainStemmer {
                     }
                 }
 
-                makeFile(sb.toString() , "stemmedFiles" + File.separator + ExistingFileName );
+                makeFile(sb.toString() , SAVE_DIRECTORY + ExistingFileName );
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -81,4 +85,12 @@ public class MainStemmer {
 
     }
 
+    public void organize()
+    {
+        try {
+            new FileOrganizer().organize(SAVE_DIRECTORY + file.getName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

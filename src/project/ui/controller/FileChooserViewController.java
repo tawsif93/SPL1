@@ -1,4 +1,4 @@
-package project.ui;/**
+package project.ui.controller;/**
  * Created by tawsif on 6/13/15.
  *
  * @Time 2:22 AM
@@ -6,7 +6,6 @@ package project.ui;/**
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -52,7 +51,7 @@ public class FileChooserViewController implements Initializable{
 
         Parent mainViewParent = null;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader (getClass().getResource("MainView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader (getClass().getResource("/MainView.fxml"));
 
             mainViewParent = (Parent)fxmlLoader.load();
 
@@ -108,7 +107,8 @@ public class FileChooserViewController implements Initializable{
     public void configureFileChooser()
     {
         directoryChooser.setTitle("Documents Directories");
-        directoryChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+
+        directoryChooser.setInitialDirectory(new File("/home/tawsif/Documents/Source/"));
     }
 
     public Boolean checkValidDirectory(String path)

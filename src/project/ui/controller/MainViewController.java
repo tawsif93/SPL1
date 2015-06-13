@@ -1,40 +1,42 @@
-package project.ui;
+package project.ui.controller;
 
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import project.source.DocumentProcessor;
 import project.source.DocumentProcessorService;
+import project.source.search.Result;
+import project.source.search.Searcher;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainViewController implements Initializable
 {
 
     DocumentProcessorService service = new DocumentProcessorService();
+
     @FXML
     private TableView resultTable ;
+
+    @FXML
+    private TableColumn  columnKeyWord ;
+
+    @FXML
+    private TableColumn columnFrequency ;
+
     @FXML
     private Button buttonSearch ;
+
     @FXML
     private TextField enterTextField ; ;
-@FXML
-    private ProgressBar progressBar = new ProgressBar();
 
-    /**
-     * Called to initialize a controller after its root element has been
-     * completely processed.
-     *
-     * @param location  The location used to resolve relative paths for the root object, or
-     *                  <tt>null</tt> if the location is not known.
-     * @param resources The resources used to localize the root object, or <tt>null</tt> if
-     */
+    @FXML
+    private ProgressBar progressBar = new ProgressBar();
 
 
     public void setSource(String source) {
@@ -45,7 +47,23 @@ public class MainViewController implements Initializable
     public void onClick(ActionEvent event)
     {
         System.out.println(service.getSource());
+        Searcher searcher = new Searcher();
+        try {
+            System.out.println(enterTextField.getText() + " text ");
+            searcher.searchResult(enterTextField.getText()).forEach(s -> System.out.println(s.fileName + " " + s.frequency));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    /**
+     * Called to initialize a controller after its root element has been
+     * completely processed.
+     *
+     * @param location  The location used to resolve relative paths for the root object, or
+     *                  <tt>null</tt> if the location is not known.
+     * @param resources The resources used to localize the root object, or <tt>null</tt> if
+     */
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

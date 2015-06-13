@@ -6,6 +6,7 @@ import com.itextpdf.text.pdf.parser.SimpleTextExtractionStrategy;
 import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 
 import javafx.concurrent.Task;
+
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
@@ -25,7 +26,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -46,8 +46,6 @@ import java.util.zip.ZipInputStream;
  *
  */
 public class DocumentProcessor extends Task{
-
-
 
     protected static final String OUTPUT_FOLDER = "Parsed Text/";
     protected static final String PARSED_FILE_LIST = "Parsed List/list.txt";
@@ -85,7 +83,7 @@ public class DocumentProcessor extends Task{
 
     /**
      * It takes directory of the zipped file ( DOCX )
-     * Name of the input file is passed , then added with the directory of Input Folder
+     * Name of the input file is passed , then added with the directory of Input file
      * It creates a output folder with xml files in the output Directory in the program
      * Java ZipEntry and ZipInputStream is used unzipping zip file using byte Array
      *
@@ -248,7 +246,8 @@ public class DocumentProcessor extends Task{
                     String pdf = readPdf(INPUT_DOCUMENT + File.separator + string);
                     makeFile(string + "\n "+ pdf, string);
                 }
-                if (isValid(string)) new MainStemmer(new File(OUTPUT_FOLDER + removeExtension(string) + ".txt"));
+
+                new MainStemmer(new File(OUTPUT_FOLDER + removeExtension(string) + ".txt"));
 
             } else
             {
@@ -263,6 +262,8 @@ public class DocumentProcessor extends Task{
             updateProgress(count , path.length);
             count++;
         }
+
+        if (path.length==0) updateProgress(count , 1);
 
     }
 
@@ -318,7 +319,7 @@ public class DocumentProcessor extends Task{
     public void loadParsed() {
         Path parsed = Paths.get(PARSED_FILE_LIST);
         try {
-            Files.lines(parsed, StandardCharsets.UTF_8).forEach(s -> SourceName.add(s.toString()));
+            Files.lines(parsed, StandardCharsets.UTF_8).forEach(SourceName::add);
         } catch (IOException e) {
             e.printStackTrace();
         }
