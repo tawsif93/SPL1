@@ -1,3 +1,10 @@
+.root{
+    -fx-background-image: url("front%20Cover%20png.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 350 150;
+    -fx-background-position: center 20;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
 #buttonGo {
     -fx-background-color:
         linear-gradient(#f0ff35, #a9ff00),

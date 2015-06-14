@@ -12,7 +12,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/8" fx:controller="project.ui.controller.FileChooserViewController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="490.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" fx:controller="project.ui.controller.FileChooserViewController">
    <children>
       <TextField fx:id="directoryTextField" layoutX="37.0" layoutY="247.0" onKeyReleased="#onKeyTypeTextField" prefHeight="25.0" prefWidth="271.0" promptText="Enter Directory" />
       <Button fx:id="buttonDirectory" layoutX="325.0" layoutY="247.0" mnemonicParsing="false" onAction="#onClickDirectory" prefHeight="25.0" prefWidth="80.0" text="Directory">

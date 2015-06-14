@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class WordOrganizer 
 {
-	protected static String DEFAULT_SAVE_DIRECTORY = "Organized" + File.separator ;
+	public static String DEFAULT_SAVE_DIRECTORY = "Organized" + File.separator ;
 	private String sourceFileName;
 	
 	public WordOrganizer(String sourceFileName)
@@ -40,6 +40,8 @@ public class WordOrganizer
 	
 	private String getFileNameWhereToStore(String word)
 	{
+		if(word.length() == 0) return DEFAULT_SAVE_DIRECTORY + "Other.txt";
+
 		if((word.charAt(0) <= 'z' && word.charAt(0) >= 'a') || (word.charAt(0) <= 'Z' && word.charAt(0) >= 'A'))
 			return DEFAULT_SAVE_DIRECTORY + word.toUpperCase().charAt(0) + ".txt";
 		return DEFAULT_SAVE_DIRECTORY + "Other.txt";

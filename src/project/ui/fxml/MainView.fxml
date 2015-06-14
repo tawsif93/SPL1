@@ -12,13 +12,19 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/8" fx:controller="project.ui.controller.MainViewController">
    <children>
       <ProgressBar fx:id="progressBar" layoutY="383.0" prefHeight="20.0" prefWidth="490.0" progress="0.0" />
-      <TableView fx:id="resultTable" layoutX="51.0" layoutY="114.0" prefHeight="250.0" prefWidth="329.0">
+      <TableView fx:id="resultTable" layoutX="36.0" layoutY="115.0" prefHeight="250.0" prefWidth="329.0">
         <columns>
-          <TableColumn fx:id="columnKeyWord" editable="false" prefWidth="205.0" resizable="false" text="Key Word" />
-          <TableColumn fx:id="columnFrequency" editable="false" prefWidth="123.0" resizable="false" text="Frequency" />
+          <TableColumn fx:id="columnKeyWord" editable="false" prefWidth="208.0" resizable="false" text="Key Word" />
+          <TableColumn fx:id="columnFrequency" editable="false" prefWidth="103.0" resizable="false" text="Frequency" />
         </columns>
       </TableView>
-      <TextField fx:id="enterTextField" layoutX="54.0" layoutY="61.0" prefHeight="25.0" prefWidth="246.0" promptText="Enter word" />
-      <Button fx:id="buttonSearch" layoutX="327.0" layoutY="62.0" mnemonicParsing="false" onAction="#onClick" prefHeight="25.0" prefWidth="87.0" text="Search" />
+      <TextField fx:id="enterTextField" layoutX="38.0" layoutY="61.0" prefHeight="25.0" prefWidth="329.0" promptText="Enter word" />
+      <Button fx:id="buttonSearch" layoutX="382.0" layoutY="61.0" mnemonicParsing="false" onAction="#buttonSearchHandler" prefHeight="25.0" prefWidth="87.0" text="Search" wrapText="true" />
+      <Button fx:id="buttonView" layoutX="382.0" layoutY="115.0" mnemonicParsing="false" onAction="#handleResultTable" prefHeight="25.0" prefWidth="87.0" text="View" />
+      <Button fx:id="buttonChangeDirectory" layoutX="382.0" layoutY="340.0" mnemonicParsing="false" onAction="#buttonChangeDirectoryHandler" prefHeight="25.0" prefWidth="87.0" text="Directory">
+         <tooltip>
+            <Tooltip text="Change Directory" />
+         </tooltip>
+      </Button>
    </children>
 </AnchorPane>

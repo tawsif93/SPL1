@@ -6,12 +6,20 @@ import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import project.source.document.DocumentProcessor;
 import project.source.document.DocumentProcessorService;
 import project.source.stemmer.Stemmer;
 import project.source.search.Result;
 import project.source.search.Searcher;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,6 +31,7 @@ public class MainViewController implements Initializable
     DocumentProcessorService service = new DocumentProcessorService();
     Searcher searcher ;
     Stemmer stem ;
+
     @FXML
     private TableView<Result> resultTable ;
     @FXML
@@ -34,15 +43,39 @@ public class MainViewController implements Initializable
     @FXML
     private TextField enterTextField ;
     @FXML
-    private ProgressBar progressBar = new ProgressBar();
+    private ProgressBar progressBar ;
+    @FXML
+    private Button buttonView ;
+    @FXML
+    private Button buttonChangeDirectory ;
+
+    private Scene previousScene ;
+
+    public void setPreviousScene(Scene scene)
+    {
+        previousScene = scene;
+    }
 
     public void setSource(String source) {
         service.setSource(source);
     }
 
     @FXML
-    public void onClick(ActionEvent event)
+    public void buttonChangeDirectoryHandler(ActionEvent event)
     {
+        Stage backStage =(Stage) ((Node) event.getSource()).getScene().getWindow() ;
+        backStage.setScene(previousScene);
+
+        backStage.show();
+
+    }
+
+    @FXML
+    public void buttonSearchHandler(ActionEvent event)
+    {
+        System.out.println(service.getWorkDone());
+        System.out.println(service.getTotalWork());
+
         try {
 
           if(enterTextField.getText().length()!= 0)  {
@@ -58,6 +91,24 @@ public class MainViewController implements Initializable
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleResultTable() {
+        Result result = resultTable.getSelectionModel().getSelectedItem();
+        if(resultTable.getSelectionModel().getSelectedItem() != null) {
+            String directory = DocumentProcessor.getInputDoc() + File.separator + result.fileName.getValue();
+
+            new Thread(() -> {
+                try {
+                    Desktop.getDesktop().open(new File(directory));
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+    }
+
 
     /**
      * Called to initialize a controller after its root element has been
@@ -76,14 +127,9 @@ public class MainViewController implements Initializable
         columnKeyWord.setCellValueFactory(cellData -> cellData.getValue().fileName);
         columnFrequency.setCellValueFactory(cellData -> cellData.getValue().frequency.asObject());
 
-
-//        columnKeyWord.setCellValueFactory(new PropertyValueFactory<Result , String>("fileName"));
-//        columnFrequency.setCellValueFactory(new PropertyValueFactory<Result , Integer>("frequency"));
-
         simulateProgressBar();
 
     }
-
 
     public void simulateProgressBar()
     {
@@ -91,6 +137,7 @@ public class MainViewController implements Initializable
         if (service.getState() == Worker.State.READY) {
             service.start();
         }
+
     }
 
     public void refreshList(ArrayList list)

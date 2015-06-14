@@ -53,10 +53,11 @@ public class FileChooserViewController extends MainViewController implements Ini
         try {
             FXMLLoader fxmlLoader = new FXMLLoader (getClass().getResource("/MainView.fxml"));
 
-            mainViewParent = (Parent)fxmlLoader.load();
+            mainViewParent = fxmlLoader.load();
 
             MainViewController controller = fxmlLoader.<MainViewController>getController();
             controller.setSource(directoryTextField.getText());
+            controller.setPreviousScene(((Node) actionEvent.getSource()).getScene());
 
             Scene mainViewScene = new Scene(mainViewParent) ;
             Stage mainViewStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow() ;

@@ -5,6 +5,7 @@ import com.itextpdf.text.pdf.parser.PdfReaderContentParser;
 import com.itextpdf.text.pdf.parser.SimpleTextExtractionStrategy;
 import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 
+import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
 import org.apache.poi.hwpf.HWPFDocument;
@@ -16,6 +17,7 @@ import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSSerializer;
 import org.xml.sax.InputSource;
 import project.source.search.FileOrganizer;
+import project.source.search.WordOrganizer;
 import project.source.stemmer.MainStemmer;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -52,9 +54,8 @@ public class DocumentProcessor extends Task{
     protected static final String OUTPUT_FOLDER = "Parsed Text/";
     protected static final String PARSED_FILE_LIST = "Parsed List/list.txt";
     private static final String ZIP_OUTPUT_FOLDER = "Unzipped File/";
-    private static final String SOURCE_FILE_LIST = "Parsed List/source list.txt";
+    private  static String INPUT_DOCUMENT ;
     public int count ;
-    private  String INPUT_DOCUMENT ;
     private List<String> SourceName = new ArrayList<>();
 
     private DocumentProcessor() {
@@ -63,6 +64,11 @@ public class DocumentProcessor extends Task{
 
     public static DocumentProcessor createProjectStart() {
         return new DocumentProcessor();
+    }
+
+    public static String getInputDoc()
+    {
+        return INPUT_DOCUMENT;
     }
 
     /**
@@ -220,8 +226,48 @@ public class DocumentProcessor extends Task{
         xmlParse(formattedXML, OUTPUT_FOLDER + filename.replaceAll(".docx", ".txt"));
     }
 
+    public boolean readPreviousDirectory(String sourceFileName)
+    {
+        File sourceFile = new File(sourceFileName);
+        FileReader fr = null;
+        try {
+            fr = new FileReader(sourceFile);
+            BufferedReader br = new BufferedReader(fr);
+
+            String originalSourceFileName = br.readLine();
+            br.close();
+            fr.close();
+
+            if(originalSourceFileName != null && originalSourceFileName.equals(getInputDocument()) ) return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     public void doWork() throws IOException {
         String[] path = pathSender();
+
+        if (!readPreviousDirectory(PARSED_FILE_LIST))
+        {
+            System.out.println("pass");
+            new Thread(() -> {
+
+                for (String s : new File(MainStemmer.SAVE_DIRECTORY).list()) {
+                    delete(new File(MainStemmer.SAVE_DIRECTORY+ s));
+                }
+                for (String s : new File(WordOrganizer.DEFAULT_SAVE_DIRECTORY).list()) {
+                    delete(new File(WordOrganizer.DEFAULT_SAVE_DIRECTORY+s));
+                }
+                for (String s : new File(OUTPUT_FOLDER).list()) {
+                    delete(new File(OUTPUT_FOLDER+ s));
+                }
+
+                delete(new File(PARSED_FILE_LIST));
+                editList(getInputDocument()+'\n', PARSED_FILE_LIST);
+            }).start();
+        }
 
         loadParsed();
 
@@ -230,7 +276,6 @@ public class DocumentProcessor extends Task{
 
                 String withoutExtension = removeExtension(string);
 
-                editList(string +"\n" , SOURCE_FILE_LIST);
                 editList(withoutExtension + "\n" , PARSED_FILE_LIST);
 
                 SourceName.add(withoutExtension);
@@ -250,6 +295,8 @@ public class DocumentProcessor extends Task{
                 }
 
                 String fileName = removeExtension(string) + ".txt" ;
+
+
                 new MainStemmer(new File(OUTPUT_FOLDER + fileName));
                 new FileOrganizer().organize(MainStemmer.SAVE_DIRECTORY + fileName);
 
@@ -327,6 +374,7 @@ public class DocumentProcessor extends Task{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        SourceName.remove(0);
     }
 
     public String readDoc(String filePath) {
