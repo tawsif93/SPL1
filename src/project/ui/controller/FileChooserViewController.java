@@ -25,15 +25,6 @@ import java.util.ResourceBundle;
 
 public class FileChooserViewController extends MainViewController implements Initializable{
     DirectoryChooser directoryChooser = new DirectoryChooser();
-    /**
-     * Called to initialize a controller after its root element has been
-     * completely processed.
-     *
-     * @param location  The location used to resolve relative paths for the root object, or
-     *                  <tt>null</tt> if the location is not known.
-     * @param resources The resources used to localize the root object, or <tt>null</tt> if
-     */
-
 
     @FXML
     private Button buttonDirectory ;
@@ -47,9 +38,8 @@ public class FileChooserViewController extends MainViewController implements Ini
     @FXML
     public void onClickGo(ActionEvent actionEvent)
     {
-        System.out.println("GO Pass");
 
-        Parent mainViewParent = null;
+        Parent mainViewParent;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader (getClass().getResource("/MainView.fxml"));
 
@@ -103,13 +93,22 @@ public class FileChooserViewController extends MainViewController implements Ini
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        buttonGo.setDisable(true);
-        configureFileChooser();
-        configureDirectoryField();
+	/**
+	 *
+	 * Called to initialize a controller after its root element has been
+	 * completely processed.
+	 *
+	 * @param location  The location used to resolve relative paths for the root object, or
+	 *                  <tt>null</tt> if the location is not known.
+	 * @param resources The resources used to localize the root object, or <tt>null</tt> if
+	 */
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		buttonGo.setDisable(true);
+		configureFileChooser();
+		configureDirectoryField();
 
-    }
+	}
 
     public void configureFileChooser()
     {
@@ -120,7 +119,7 @@ public class FileChooserViewController extends MainViewController implements Ini
 
     private void configureDirectoryField() {
         File sourceFile = new File(DocumentProcessor.createProjectStart().PARSED_FILE_LIST);
-        FileReader fr = null;
+        FileReader fr;
         try {
             fr = new FileReader(sourceFile);
             BufferedReader br = new BufferedReader(fr);
@@ -138,6 +137,5 @@ public class FileChooserViewController extends MainViewController implements Ini
             e.printStackTrace();
         }
     }
-
 
 }

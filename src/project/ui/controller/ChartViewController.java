@@ -29,14 +29,7 @@ import java.util.ResourceBundle;
  * @Time 12:19 AM
  */
 public class ChartViewController implements Initializable{
-	/**
-	 * Called to initialize a controller after its root element has been
-	 * completely processed.
-	 *
-	 * @param location  The location used to resolve relative paths for the root object, or
-	 *                  <tt>null</tt> if the location is not known.
-	 * @param resources The resources used to localize the root object, or <tt>null</tt> if
-	 */
+
 	@FXML
 	private PieChart pieChart;
 
@@ -64,22 +57,29 @@ public class ChartViewController implements Initializable{
 		pieChart.setData(datas);
 
 
+		pieChart.getData().forEach(data -> data.getNode().addEventHandler( MouseEvent.MOUSE_ENTERED , event1 -> pieLabel.setVisible(true)) );
+
 		pieChart.getData().forEach(data -> data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, event -> {
 			pieLabel.setLayoutX(event.getSceneX());
 			pieLabel.setLayoutY(event.getSceneY());
 			pieLabel.setText(data.getName() + "\n" + (int) data.getPieValue());
-			pieLabel.setVisible(true);
+			pieLabel.autosize();
 		}));
-		pieChart.getData().forEach(data -> data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
-
-			pieLabel.setVisible(false);
-		}));
+		pieChart.getData().forEach(data -> data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, event -> pieLabel.setVisible(false)));
 	}
 	public void setPreviousScene(Scene scene)
 	{
 		this.previousScene = scene;
 	}
 
+	/**
+	 * Called to initialize a controller after its root element has been
+	 * completely processed.
+	 *
+	 * @param location  The location used to resolve relative paths for the root object, or
+	 *                  <tt>null</tt> if the location is not known.
+	 * @param resources The resources used to localize the root object, or <tt>null</tt> if
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		pieLabel.setVisible(false);

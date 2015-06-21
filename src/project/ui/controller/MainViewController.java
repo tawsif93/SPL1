@@ -90,7 +90,7 @@ public class MainViewController implements Initializable
 
 		if(!data.isEmpty()) {
 
-			Parent mainViewParent = null;
+			Parent mainViewParent;
 
 			try {
 				FXMLLoader chartViewFXML = new FXMLLoader(getClass().getResource("/ChartView.fxml"));
@@ -178,8 +178,6 @@ public class MainViewController implements Initializable
      * @param resources The resources used to localize the root object, or <tt>null</tt> if
      */
 
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -188,8 +186,6 @@ public class MainViewController implements Initializable
         columnKeyWord.setCellValueFactory(cellData -> cellData.getValue().fileName);
 		columnFrequency.setCellValueFactory(cellData -> cellData.getValue().frequency.asObject());
 
-		System.out.println(Font.getFontNames());
-//		enterTextField.setFont(Font.font(FOnt));
 		simulateProgressBar();
     }
 
