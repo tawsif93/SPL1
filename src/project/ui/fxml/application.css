@@ -1,10 +1,22 @@
 .root{
-    -fx-background-image: url("front%20Cover%20png.png");
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 350 150;
-    -fx-background-position: center 20;
-    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
+#labelMulti{
+    -fx-font-family: "jokerman" ;
+    -fx-font-size: 50px;
+}
+#labelSearch{
+    -fx-font-family: "jokerman" ;
+    -fx-font-size: 50px;
+}
+#labelText{
+    -fx-font-family: "jokerman" ;
+    -fx-font-size: 50px;
+}
+#buttonView:hover{
+    -fx-background-color: #7ebceaত;
+}
+
+
 #buttonGo {
     -fx-background-color:
         linear-gradient(#f0ff35, #a9ff00),

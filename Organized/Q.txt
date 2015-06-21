@@ -1,1 +1,3 @@
-qualiti,TESTING HYPOTHESIS.docx,1
+quantiti,3.docx,2,21.docx,1,6.docx,1,2.docx,1,Bill 15..docx,2
+question,ODD.pdf,1
+quarter,Bill 15..docx,1

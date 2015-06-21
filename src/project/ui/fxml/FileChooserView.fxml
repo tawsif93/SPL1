@@ -25,5 +25,15 @@
          </font>
       </Label>
       <Button fx:id="buttonGo" defaultButton="true" layoutX="420.0" layoutY="247.0" mnemonicParsing="false" onAction="#onClickGo" prefHeight="25.0" prefWidth="49.0" text="Go" />
+      <Label fx:id="labelMulti" layoutX="59.0" layoutY="18.0" prefHeight="55.0" prefWidth="271.0" style="-fx-font-size: 30;" text="Multilingual ">
+         <font>
+            <Font name="Jamrul" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelText" layoutX="85.0" layoutY="59.0" prefHeight="35.0" prefWidth="121.0" text="Text">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Label fx:id="labelSearch" layoutX="175.0" layoutY="117.0" text="Search" />
    </children>
 </AnchorPane>

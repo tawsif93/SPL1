@@ -9,16 +9,6 @@ public class MainStemmer {
 
     // public int  LineNumber;
 
-/* public static void main(String[] args) {
-        String word = "প্রতিভা";
-        System.out.println(word.substring(3, word.length()) + " " + "আড়".length());
-        Stemmer st = new Stemmer();
-        st.setWord("\",Existing:");
-        System.out.println(st.getWord());
-//        new MainStemmer(new File(DocumentProcessor.OUTPUT_FOLDER));
-    }*/
-
-
     public MainStemmer(File file){
         this.file = file;
         getWordAndFileName();
@@ -68,6 +58,7 @@ public class MainStemmer {
             e.printStackTrace();
         }
     }
+
     public void makeFile(String value, String fileName) {
 
 
@@ -83,6 +74,15 @@ public class MainStemmer {
         }
 
 
+    }
+
+    public static void main(String[] args) {
+        String word = "প্রতিভা";
+        System.out.println(word.substring(3, word.length()) + " " + "আড়".length());
+        Stemmer st = new Stemmer();
+        st.setWord("\",Lovely");
+        System.out.println(st.getWord());
+//        new MainStemmer(new File(DocumentProcessor.OUTPUT_FOLDER));
     }
 
 }

@@ -17,9 +17,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import project.source.document.DocumentProcessor;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -74,17 +74,21 @@ public class FileChooserViewController extends MainViewController implements Ini
     @FXML
     public void onKeyTypeTextField(Event event) {
 
-        System.out.println("type pass");
         if (checkValidDirectory(directoryTextField.getText()))
             buttonGo.setDisable(false);
         else
             buttonGo.setDisable(true);
     }
 
+    public Boolean checkValidDirectory(String path)
+    {
+        File file = new File(path);
+        return file.exists();
+    }
+
     @FXML
     public void onClickDirectory( ActionEvent event)
     {
-        System.out.println("pass");
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow() ;
         File selectedDirectory = directoryChooser.showDialog(currentStage);
 
@@ -103,6 +107,8 @@ public class FileChooserViewController extends MainViewController implements Ini
     public void initialize(URL location, ResourceBundle resources) {
         buttonGo.setDisable(true);
         configureFileChooser();
+        configureDirectoryField();
+
     }
 
     public void configureFileChooser()
@@ -112,10 +118,25 @@ public class FileChooserViewController extends MainViewController implements Ini
         directoryChooser.setInitialDirectory(new File("/home/tawsif/Documents/Source/"));
     }
 
-    public Boolean checkValidDirectory(String path)
-    {
-        File file = new File(path);
-        return file.exists();
+    private void configureDirectoryField() {
+        File sourceFile = new File(DocumentProcessor.createProjectStart().PARSED_FILE_LIST);
+        FileReader fr = null;
+        try {
+            fr = new FileReader(sourceFile);
+            BufferedReader br = new BufferedReader(fr);
+
+            String originalSourceFileName = br.readLine();
+            if(originalSourceFileName != null && checkValidDirectory(originalSourceFileName))
+            {
+                directoryTextField.setText(originalSourceFileName);
+                buttonGo.setDisable(false);
+            }
+            br.close();
+            fr.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
