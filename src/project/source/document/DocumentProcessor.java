@@ -470,7 +470,7 @@ public class DocumentProcessor extends Task {
 		return false;
 	}
 
-	public void getTimeStamp(String coreXML) throws FileNotFoundException, XMLStreamException {
+	public void getDocumentTimeProperties(String coreXML) throws FileNotFoundException, XMLStreamException {
 
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 		XMLStreamReader reader = inputFactory.createXMLStreamReader(new FileInputStream(coreXML));
@@ -480,6 +480,7 @@ public class DocumentProcessor extends Task {
 		String tagContent = null;
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 		while (reader.hasNext()) {
 			int event = reader.next();
 
