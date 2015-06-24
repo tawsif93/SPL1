@@ -1,6 +1,6 @@
-gener,3.docx,2,RUPOMM TRADERS.docx,1,21.docx,1,6.docx,1,ODD.pdf,7,2.docx,1,Bill 15..docx,1
-gi,3.docx,6,6.docx,3
-grade,3.docx,2
+gener,3.docx,1,RUPOMM TRADERS.docx,1,21.docx,1,6.docx,1,ODD.pdf,7,2.docx,1,Bill 15..docx,1
+gi,3.docx,3,6.docx,3
+grade,3.docx,1
 glori,Safe With You lyrics.doc,1
 god,Safe With You lyrics.doc,2
 game,Cigarettes lyrics.doc,2

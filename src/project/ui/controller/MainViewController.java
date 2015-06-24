@@ -14,11 +14,8 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.text.*;
-import javafx.scene.text.Font;
-import javafx.stage.Modality;
+
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import project.source.document.DocumentProcessor;
 import project.source.document.DocumentProcessorService;
 import project.source.search.Result;
@@ -39,6 +36,7 @@ public class MainViewController implements Initializable
     Searcher searcher ;
     Stemmer stem ;
 	ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
+
     @FXML
     private TableView<Result> resultTable ;
     @FXML
@@ -57,9 +55,8 @@ public class MainViewController implements Initializable
     private Button buttonChangeDirectory ;
 	@FXML
 	private Button buttonChart;
-	@FXML
-	private Button buttonProperties;
-    private Scene previousScene ;
+
+	private Scene previousScene ;
 
     public void setPreviousScene(Scene scene)
     {
@@ -69,21 +66,6 @@ public class MainViewController implements Initializable
     public void setSource(String source) {
         service.setSource(source);
     }
-
-	@FXML
-	void buttonPropertiesHandler(ActionEvent event) {
-
-		Alert dialog = new Alert(Alert.AlertType.INFORMATION);
-		dialog.setTitle("Properties");
-		dialog.setHeaderText("Here Name of the document will be added");
-		dialog.setContentText("Here Document Properties will be Added");
-		dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
-		dialog.initStyle(StageStyle.DECORATED);
-		dialog.initModality(Modality.NONE);
-
-		dialog.showAndWait();
-
-	}
 
 	@FXML
 	void buttonChartHandler(ActionEvent event) {
@@ -146,8 +128,6 @@ public class MainViewController implements Initializable
     {
         ObservableList data = FXCollections.observableArrayList(list);
 
-        System.out.println(data.size());
-
         resultTable.setItems(data);
         resultTable.requestFocus();
 
@@ -187,6 +167,7 @@ public class MainViewController implements Initializable
 		columnFrequency.setCellValueFactory(cellData -> cellData.getValue().frequency.asObject());
 
 		simulateProgressBar();
+
     }
 
     public void simulateProgressBar()

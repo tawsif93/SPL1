@@ -118,7 +118,7 @@ public class FileChooserViewController extends MainViewController implements Ini
     }
 
     private void configureDirectoryField() {
-        File sourceFile = new File(DocumentProcessor.createProjectStart().PARSED_FILE_LIST);
+        File sourceFile = new File(DocumentProcessor.PARSED_FILE_LIST);
         FileReader fr;
         try {
             fr = new FileReader(sourceFile);

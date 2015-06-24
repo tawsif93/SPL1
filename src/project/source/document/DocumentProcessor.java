@@ -26,20 +26,19 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.Timestamp;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 /**
- * Created by tawsif on 6/9/15.
- *
- * @author tawsif
  *         <p>
  *         This class Reads Text Documents form doc, docx , pdf formatted file
  *         Apache Poi Library used for doc
@@ -47,9 +46,10 @@ import java.util.zip.ZipInputStream;
  *         <p>
  *         This Class based on Parsing Text from DOCX file
  *         For docx format , basic xml of docx is parsed by unzipping the .docx file
- *         xml file is collected from word documemt directory of unzipped .docx file
+ *         xml file is collected from word document directory of unzipped .docx file
  *         root word directory of docx is "word/document.xml"
  *         By formatting the basic xml file , parsed the text document
+ *         @author tawsif
  */
 public class DocumentProcessor extends Task {
 
@@ -58,9 +58,12 @@ public class DocumentProcessor extends Task {
 	private static final String ZIP_OUTPUT_FOLDER = "Unzipped File/";
 	private static String INPUT_DOCUMENT;
 	public int count;
-	private List<String> SourceName = new ArrayList<>();
+	private List<String> SourceName ;
+	private List<String> lastModifiedList;
 
 	private DocumentProcessor() {
+		SourceName = new ArrayList<>();
+		lastModifiedList = new ArrayList<>();
 		count = 1;
 	}
 
@@ -127,7 +130,7 @@ public class DocumentProcessor extends Task {
 
 				File newFile = new File(OUTPUT_FILE + File.separator + fileName);
 
-				System.out.println("File Unzip : " + newFile.getAbsolutePath());
+//				System.out.println("File Unzip : " + newFile.getAbsolutePath());
 
 				new File(newFile.getParent()).mkdirs();
 
@@ -145,7 +148,7 @@ public class DocumentProcessor extends Task {
 			zis.closeEntry();
 			zis.close();
 
-			System.out.println("Done");
+//			System.out.println("Done");
 
 		} catch (Exception e) {
 
@@ -227,7 +230,7 @@ public class DocumentProcessor extends Task {
 
 	public boolean readPreviousDirectory(String sourceFileName) {
 		File sourceFile = new File(sourceFileName);
-		FileReader fr = null;
+		FileReader fr;
 		try {
 			fr = new FileReader(sourceFile);
 			BufferedReader br = new BufferedReader(fr);
@@ -248,9 +251,6 @@ public class DocumentProcessor extends Task {
 		String[] path = pathSender();
 
 		if (!readPreviousDirectory(PARSED_FILE_LIST)) {
-			System.out.println("pass");
-			new Thread(() -> {
-
 				for (String s : new File(MainStemmer.SAVE_DIRECTORY).list()) {
 					delete(new File(MainStemmer.SAVE_DIRECTORY + s));
 				}
@@ -263,7 +263,6 @@ public class DocumentProcessor extends Task {
 
 				delete(new File(PARSED_FILE_LIST));
 				editList(getInputDocument() + '\n', PARSED_FILE_LIST);
-			}).start();
 		}
 
 		loadParsed();
@@ -273,26 +272,37 @@ public class DocumentProcessor extends Task {
 
 				String withoutExtension = removeExtension(string);
 
-				editList(withoutExtension + "\n", PARSED_FILE_LIST);
+				editList(withoutExtension + " , ", PARSED_FILE_LIST);
 
 				SourceName.add(withoutExtension);
 
 				if (string.contains(".docx")) {
 					parseDocx(string);
+
+					String timeStampPath = ZIP_OUTPUT_FOLDER + string.replaceAll(".docx", "") + File.separator + "docProps/core.xml" ;
+					System.out.println(string + " : " + getDocumentTimeProperties(timeStampPath));
+					editList( getDocumentTimeProperties(timeStampPath) + '\n', PARSED_FILE_LIST);
+
 					deleteFiles(withoutExtension);
 
 				} else if (string.contains(".doc")) {
 
-					String doc = readDoc(INPUT_DOCUMENT + File.separator + string);
+					String input = INPUT_DOCUMENT + File.separator + string ;
+
+					String doc = readDoc(input);
+					System.out.println(string + " : "+getDocumentTimeProperties(input));
+					editList(getDocumentTimeProperties(input) + '\n', PARSED_FILE_LIST);
 					makeFile(string + "\n " + doc, string);
 
 				} else if (string.contains(".pdf")) {
-					String pdf = readPdf(INPUT_DOCUMENT + File.separator + string);
+					String input = INPUT_DOCUMENT + File.separator + string ;
+					String pdf = readPdf(input);
+					System.out.println(string +" "+ getDocumentTimeProperties(input));
+					editList(getDocumentTimeProperties(input) + '\n', PARSED_FILE_LIST);
 					makeFile(string + "\n " + pdf, string);
 				}
 
 				String fileName = removeExtension(string) + ".txt";
-
 
 				new MainStemmer(new File(OUTPUT_FOLDER + fileName));
 				new FileOrganizer().organize(MainStemmer.SAVE_DIRECTORY + fileName);
@@ -309,7 +319,6 @@ public class DocumentProcessor extends Task {
 			updateProgress(count, path.length);
 			count++;
 		}
-
 		if (path.length == 0) updateProgress(count, 1);
 
 	}
@@ -331,7 +340,7 @@ public class DocumentProcessor extends Task {
 	public String readFile(String XMLpath) throws IOException {
 		Path path = Paths.get(XMLpath);
 		StringBuilder sb = new StringBuilder();
-		Files.lines(path, StandardCharsets.UTF_8).forEach((str) -> sb.append(str));
+		Files.lines(path, StandardCharsets.UTF_8).forEach((str) -> sb.append(str).append('\n'));
 
 		return sb.toString();
 	}
@@ -353,6 +362,7 @@ public class DocumentProcessor extends Task {
 
 	public void editList(String name, String path) {
 		try {
+
 			byte[] bytes = name.getBytes();
 			FileOutputStream editingFile = new FileOutputStream(path, true);
 			editingFile.write(bytes);
@@ -366,7 +376,12 @@ public class DocumentProcessor extends Task {
 	public void loadParsed() {
 		Path parsed = Paths.get(PARSED_FILE_LIST);
 		try {
-			Files.lines(parsed, StandardCharsets.UTF_8).forEach(SourceName::add);
+			Files.lines(parsed, StandardCharsets.UTF_8).forEach((str) ->
+			{
+				String [] tokens = str.split(",");
+				SourceName.add(tokens[0]);
+				if(tokens.length==2)lastModifiedList.add(tokens[1]);
+			});
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -425,7 +440,7 @@ public class DocumentProcessor extends Task {
 			if (file.list().length == 0) {
 
 				file.delete();
-				System.out.println("Directory is deleted : " + file.getAbsolutePath());
+//				System.out.println("Directory is deleted : " + file.getAbsolutePath());
 
 			} else {
 
@@ -441,13 +456,13 @@ public class DocumentProcessor extends Task {
 				//check the directory again, if empty then delete it
 				if (file.list().length == 0) {
 					file.delete();
-					System.out.println("Directory is deleted : " + file.getAbsolutePath());
+//					System.out.println("Directory is deleted : " + file.getAbsolutePath());
 				}
 			}
 		} else {
 			//if file, then delete it
 			file.delete();
-			System.out.println("File is deleted : " + file.getAbsolutePath());
+//			System.out.println("File is deleted : " + file.getAbsolutePath());
 		}
 	}
 
@@ -470,59 +485,88 @@ public class DocumentProcessor extends Task {
 		return false;
 	}
 
-	public void getDocumentTimeProperties(String coreXML) throws FileNotFoundException, XMLStreamException {
+	public String formatDate(String unformattedDate) {
+		DateFormat inputDateFormatter = new SimpleDateFormat(
+				"yyyy-MM-dd'T'HH:mm:ss'Z'");
+		Date date;
+		try {
+			date = inputDateFormatter.parse(unformattedDate);
 
-		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-		XMLStreamReader reader = inputFactory.createXMLStreamReader(new FileInputStream(coreXML));
+			String outputDateFormatter = "dd-MM-yyyy HH:mm:ss a";
+			SimpleDateFormat sdf = new SimpleDateFormat(outputDateFormatter);
 
-		ArrayList<String> simpleDateFormats = null;
+			return sdf.format(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
-		String tagContent = null;
+	public String getDocumentTimeProperties(String coreXML)  {
 
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		ArrayList<String> simpleDateFormats = new ArrayList<>();
 
-		while (reader.hasNext()) {
-			int event = reader.next();
+		if(coreXML.contains(".xml")) {
+			try {
 
-			switch (event) {
-				case XMLStreamConstants.START_ELEMENT:
-					if ("coreProperties".equals(reader.getLocalName()))
-						simpleDateFormats = new ArrayList<>();
-					System.out.println("pass : " + reader.getLocalName());
-/*
-					if ("dcterms:created".equals(reader.getLocalName()) && reader.getAttributeName(0).equals("xsi:type")) {
-						simpleDateFormats.add(format.format(reader.getAttributeValue(0)));
-						System.out.println(format.format(reader.getAttributeValue(0)));
+				XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+				XMLStreamReader reader = inputFactory.createXMLStreamReader(new FileInputStream(coreXML));
+
+				String tagContent = null;
+
+				while (reader.hasNext()) {
+					int event = reader.next();
+
+					switch (event) {
+						case XMLStreamConstants.START_ELEMENT:
+//							if ("coreProperties".equals(reader.getLocalName()))
+//								simpleDateFormats = new ArrayList<>();
+							break;
+
+						case XMLStreamConstants.CHARACTERS:
+							tagContent = reader.getText().trim();
+							break;
+
+						case XMLStreamConstants.END_ELEMENT:
+							switch (reader.getLocalName()) {
+								case "created":
+									assert tagContent != null;
+//							simpleDateFormats.add("Created : " + formatDate(tagContent));
+//									System.out.println("Created : " + formatDate(tagContent));
+									break;
+
+								case "modified":
+									assert tagContent != null;
+									simpleDateFormats.add( formatDate(tagContent));
+//									System.out.println("Modified : " + formatDate(tagContent));
+									break;
+
+								case "lastPrinted":
+									assert tagContent != null;
+//									System.out.println("Last printed  : " + formatDate(tagContent));
+									break;
+							}
 					}
-*/
-					break;
-
-				case XMLStreamConstants.CHARACTERS:
-					tagContent = reader.getText().trim();
-					break;
-
-				case XMLStreamConstants.END_ELEMENT:
-					switch (reader.getLocalName()) {
-						case "created":
-
-							assert simpleDateFormats != null;
-							assert tagContent != null;
-							simpleDateFormats.add(format.format(tagContent.replaceAll("[TZ]" , "")));
-							System.out.println("Created : " + format.format(tagContent.replaceAll("[TZ]" , "")));
-							break;
-						case "modified":
-							assert simpleDateFormats != null;
-							assert tagContent != null;
-							simpleDateFormats.add(format.format(tagContent.replaceAll("[TZ]" , "")));
-							System.out.println("Modified : " + format.format(tagContent.replaceAll("[TZ]" , "")));
-							break;
-						case "lastPrinted":
-							assert tagContent != null;
-							System.out.println("Last printed  : " + format.format(tagContent.replaceAll("[TZ]" , "")));
-							break;
-					}
+				}
+			}catch (FileNotFoundException | XMLStreamException e)
+			{
+				e.printStackTrace();
 			}
 		}
+		else
+		{
+			Path file = Paths.get(coreXML);
+			try {
+
+				BasicFileAttributes fileAttributes = Files.readAttributes(file, BasicFileAttributes.class);
+				simpleDateFormats.add(formatDate(fileAttributes.lastModifiedTime().toString()));
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return simpleDateFormats.remove(0);
 	}
 }
 
