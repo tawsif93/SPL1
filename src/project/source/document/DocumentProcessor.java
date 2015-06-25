@@ -89,6 +89,7 @@ public class DocumentProcessor extends Task {
 	 */
 	@Override
 	protected Object call() throws Exception {
+
 		doWork();
 		return null;
 	}
@@ -247,25 +248,120 @@ public class DocumentProcessor extends Task {
 		return false;
 	}
 
+	public void deleteEverything() {
+		for (String s : new File(MainStemmer.SAVE_DIRECTORY).list()) {
+			delete(new File(MainStemmer.SAVE_DIRECTORY + s));
+		}
+		for (String s : new File(WordOrganizer.DEFAULT_SAVE_DIRECTORY).list()) {
+			delete(new File(WordOrganizer.DEFAULT_SAVE_DIRECTORY + s));
+		}
+		for (String s : new File(OUTPUT_FOLDER).list()) {
+			delete(new File(OUTPUT_FOLDER + s));
+		}
+
+		delete(new File(PARSED_FILE_LIST));
+
+	}
+
+	public void checkModified()  {
+		String[] path = pathSender();
+		if (!readPreviousDirectory(PARSED_FILE_LIST))
+			return;
+
+		loadParsed();
+
+
+		for(String p : path) {
+
+			if (!checkParsed(p) && isValid(p)) {
+				if (p.contains(".docx")) {
+					unzip(p);
+					String timeStampPath = ZIP_OUTPUT_FOLDER + p.replaceAll(".docx", "") + File.separator + "docProps/core.xml" ;
+
+					System.out.println(p);
+					System.out.println("From Doc : " + getDocumentTimeProperties(timeStampPath));
+					if(SourceName.size()!= 0)System.out.println("From List : "+ lastModifiedList.get(SourceName.indexOf(removeExtension(p))));
+
+					if(SourceName.size()!= 0 && !getDocumentTimeProperties(timeStampPath).equals(lastModifiedList.get(SourceName.indexOf(removeExtension(p)))))
+					{
+						String originalSourceFileName = null;
+
+						File sourceFile = new File(PARSED_FILE_LIST);
+						FileReader fr;
+						try {
+							fr = new FileReader(sourceFile);
+							BufferedReader br = new BufferedReader(fr);
+
+							originalSourceFileName = br.readLine();
+							br.close();
+							fr.close();
+
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+
+						deleteEverything();
+						editList(originalSourceFileName + "\n", PARSED_FILE_LIST);
+
+						deleteFiles(removeExtension(p));
+						SourceName.clear();
+						lastModifiedList.clear();
+						System.out.println("\n\nData Modified : " + p + "\n\n");
+						return;
+					}
+
+				}
+				else {
+					String input = INPUT_DOCUMENT + File.separator + p;
+
+					if (SourceName.size()!= 0 && !getDocumentTimeProperties(input).equals(lastModifiedList.get(SourceName.indexOf(removeExtension(p)))))
+					{
+						String originalSourceFileName = null;
+
+						File sourceFile = new File(PARSED_FILE_LIST);
+						FileReader fr;
+						try {
+							fr = new FileReader(sourceFile);
+							BufferedReader br = new BufferedReader(fr);
+
+							originalSourceFileName = br.readLine();
+							br.close();
+							fr.close();
+
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+
+						deleteEverything();
+						editList(originalSourceFileName + "\n", PARSED_FILE_LIST);
+
+						SourceName.clear();
+						lastModifiedList.clear();
+						System.out.println("\n\nData Modified : " + p + "\n\n");
+						return;
+					}
+				}
+			}
+		}
+
+		SourceName.clear();
+		lastModifiedList.clear();
+	}
+
 	public void doWork() throws IOException {
+
+		checkModified();
+
 		String[] path = pathSender();
 
 		if (!readPreviousDirectory(PARSED_FILE_LIST)) {
-				for (String s : new File(MainStemmer.SAVE_DIRECTORY).list()) {
-					delete(new File(MainStemmer.SAVE_DIRECTORY + s));
-				}
-				for (String s : new File(WordOrganizer.DEFAULT_SAVE_DIRECTORY).list()) {
-					delete(new File(WordOrganizer.DEFAULT_SAVE_DIRECTORY + s));
-				}
-				for (String s : new File(OUTPUT_FOLDER).list()) {
-					delete(new File(OUTPUT_FOLDER + s));
-				}
-
-				delete(new File(PARSED_FILE_LIST));
+				deleteEverything();
 				editList(getInputDocument() + '\n', PARSED_FILE_LIST);
 		}
 
 		loadParsed();
+
+		System.out.println(SourceName.size());
 
 		for (String string : path) {
 			if (checkParsed(string) && isValid(string)) {
@@ -280,7 +376,7 @@ public class DocumentProcessor extends Task {
 					parseDocx(string);
 
 					String timeStampPath = ZIP_OUTPUT_FOLDER + string.replaceAll(".docx", "") + File.separator + "docProps/core.xml" ;
-					System.out.println(string + " : " + getDocumentTimeProperties(timeStampPath));
+//					System.out.println(string + " : " + getDocumentTimeProperties(timeStampPath));
 					editList( getDocumentTimeProperties(timeStampPath) + '\n', PARSED_FILE_LIST);
 
 					deleteFiles(withoutExtension);
@@ -290,14 +386,14 @@ public class DocumentProcessor extends Task {
 					String input = INPUT_DOCUMENT + File.separator + string ;
 
 					String doc = readDoc(input);
-					System.out.println(string + " : "+getDocumentTimeProperties(input));
+//					System.out.println(string + " : "+getDocumentTimeProperties(input));
 					editList(getDocumentTimeProperties(input) + '\n', PARSED_FILE_LIST);
 					makeFile(string + "\n " + doc, string);
 
 				} else if (string.contains(".pdf")) {
 					String input = INPUT_DOCUMENT + File.separator + string ;
 					String pdf = readPdf(input);
-					System.out.println(string +" "+ getDocumentTimeProperties(input));
+//					System.out.println(string +" "+ getDocumentTimeProperties(input));
 					editList(getDocumentTimeProperties(input) + '\n', PARSED_FILE_LIST);
 					makeFile(string + "\n " + pdf, string);
 				}
@@ -308,7 +404,7 @@ public class DocumentProcessor extends Task {
 				new FileOrganizer().organize(MainStemmer.SAVE_DIRECTORY + fileName);
 
 			} else {
-				System.out.println(string + " : Already Parsed ");
+//				System.out.println(string + " : Already Parsed ");
 				try {
 					Thread.sleep(TimeUnit.SECONDS.toSeconds(60));
 				} catch (InterruptedException e) {
@@ -378,14 +474,14 @@ public class DocumentProcessor extends Task {
 		try {
 			Files.lines(parsed, StandardCharsets.UTF_8).forEach((str) ->
 			{
-				String [] tokens = str.split(",");
-				SourceName.add(tokens[0]);
-				if(tokens.length==2)lastModifiedList.add(tokens[1]);
+				String [] tokens = str.split(" ,");
+				SourceName.add(tokens[0].trim());
+				if(tokens.length==2)lastModifiedList.add(tokens[1].trim());
 			});
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		SourceName.remove(0);
+		if(SourceName.size() != 0 )SourceName.remove(0);
 	}
 
 	public String readDoc(String filePath) {
